@@ -3,7 +3,7 @@ package de.deftone.musicapp.model;
 import java.io.Serializable;
 
 public class Song implements Serializable {
-    private long id;
+    private int id;
     private String title;
     private String artist;
 //    private File file;
@@ -13,6 +13,11 @@ public class Song implements Serializable {
 //    public long getId() {
 //        return id;
 //    }
+
+
+    public int getId() {
+        return id;
+    }
 
     public String getTitle() {
         return title;
@@ -34,7 +39,7 @@ public class Song implements Serializable {
 //        return songLength;
 //    }
 
-    public Song(long id, String fileName, String title, String artist) {
+    public Song(int id, String fileName, String title, String artist) {
         this.id = id;
         this.fileName = fileName;
         this.title = title;

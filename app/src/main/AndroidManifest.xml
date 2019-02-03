@@ -19,7 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ScaleActivity"></activity>
+        <activity android:name=".activity.ScaleActivity" />
+        <activity android:name=".activity.PlayerActivity"></activity>
     </application>
 
 </manifest>

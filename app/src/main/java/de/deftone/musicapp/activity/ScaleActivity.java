@@ -1,5 +1,7 @@
 package de.deftone.musicapp.activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -7,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,10 +20,14 @@ import de.deftone.musicapp.adapter.SongAdapter;
 import de.deftone.musicapp.model.Key;
 import de.deftone.musicapp.model.Song;
 
+import static de.deftone.musicapp.activity.PlayerActivity.INTENT_SONG_LIST;
+import static de.deftone.musicapp.activity.PlayerActivity.INTENT_SONG_POSITION;
+
 public class ScaleActivity extends AppCompatActivity {
 
     public static final String SCALE_EXTRA = "scale";
 
+    private Activity activity = this;
     @BindView(R.id.scale_name)
     TextView scaleName;
     @BindView(R.id.scale_name_penta)
@@ -39,11 +46,11 @@ public class ScaleActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         Key key = (Key) getIntent().getSerializableExtra(SCALE_EXTRA);
+        //todo: get scales and songs for that key!
         scaleName.setText("C-Dur");
         scaleNamePenta.setText("C-Dur Pentatonik");
         scaleImg.setImageResource(R.drawable.c_dur);
         scaleImgPenta.setImageResource(R.drawable.c_dur_penta);
-        //todo: get scales and songs for that key!
         List<Song> songList = new ArrayList<>();
         String fileName = "fly_me_moon";
         int songId = getRawResIdByName(fileName);
@@ -58,7 +65,6 @@ public class ScaleActivity extends AppCompatActivity {
         recyclerViewSongs.setLayoutManager(layoutManager);
 
         setSongsOnRecyclerView(songList);
-
     }
 
     // Find ID of resource in 'raw' folder.
@@ -69,7 +75,7 @@ public class ScaleActivity extends AppCompatActivity {
         return resID;
     }
 
-    private void setSongsOnRecyclerView(List<Song> songList) {
+    private void setSongsOnRecyclerView(final List<Song> songList) {
         // specify an adapter
         SongAdapter adapter = new SongAdapter(songList);
         recyclerViewSongs.setAdapter(adapter);
@@ -77,10 +83,12 @@ public class ScaleActivity extends AppCompatActivity {
             @Override
             public void onClick(int position) {
                 //open play activity
-//                Intent playIntent = new Intent(this, PlayActivity.class);
-//                playIntent.putExtra(INTENT_SONGLIST, (Serializable) songList);
-//                playIntent.putExtra(INTENT_SONG_ID, position);
-//                startActivity(playIntent);
+                Intent playIntent = new Intent(activity, PlayerActivity.class);
+                playIntent.putExtra(INTENT_SONG_LIST, (Serializable) songList);
+                playIntent.putExtra(INTENT_SONG_POSITION, position);
+//                playIntent.putExtra(PlayerActivity.SONG_ID_EXTRA, songList.get(position).getId());
+//                playIntent.putExtra(PlayerActivity.SONG_TITLE_EXTRA, songList.get(position).getTitle());
+                startActivity(playIntent);
             }
         });
     }
