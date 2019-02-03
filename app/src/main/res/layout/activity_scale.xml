@@ -4,60 +4,60 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorLight"
-    android:gravity="center"
     android:orientation="vertical"
     tools:context=".activity.ScaleActivity">
 
-
-    <!--scale name-->
-    <LinearLayout
+    <TextView
+        android:id="@+id/scale_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp">
-
-        <TextView
-            android:id="@+id/scale_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="C-Dur"
-            android:textColor="@color/white"
-            android:textSize="12pt"
-            android:textStyle="normal" />
-
-    </LinearLayout>
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:textColor="@color/white"
+        android:textSize="12pt"
+        android:textStyle="normal" />
 
 
-    <!--scale picture-->
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/scale"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:src="@drawable/cdur" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/scale_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:paddingTop="10dp"/>
+        <!--android:src="@drawable/c_dur" -->
 
 
-        <ImageView
-            android:id="@+id/pentatonic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:src="@drawable/cdur_pentatonik" />
+    <TextView
+        android:id="@+id/scale_name_penta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:textColor="@color/white"
+        android:textSize="12pt"
+        android:textStyle="normal" />
 
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/scale_img_penta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"/>
+        <!--android:src="@drawable/c_dur_penta" -->
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="Songs"
+        android:textColor="@color/white"
+        android:textSize="12pt"
+        android:textStyle="normal" />
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_song_list"
@@ -67,9 +67,6 @@
         android:scrollbars="vertical">
 
     </android.support.v7.widget.RecyclerView>
-
-
-
 
 
 </LinearLayout>

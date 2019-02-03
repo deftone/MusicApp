@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +21,14 @@ public class ScaleActivity extends AppCompatActivity {
 
     public static final String SCALE_EXTRA = "scale";
 
+    @BindView(R.id.scale_name)
+    TextView scaleName;
+    @BindView(R.id.scale_name_penta)
+    TextView scaleNamePenta;
+    @BindView(R.id.scale_img)
+    ImageView scaleImg;
+    @BindView(R.id.scale_img_penta)
+    ImageView scaleImgPenta;
     @BindView(R.id.recycler_view_song_list)
     RecyclerView recyclerViewSongs;
 
@@ -29,13 +39,19 @@ public class ScaleActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         Key key = (Key) getIntent().getSerializableExtra(SCALE_EXTRA);
-
+        scaleName.setText("C-Dur");
+        scaleNamePenta.setText("C-Dur Pentatonik");
+        scaleImg.setImageResource(R.drawable.c_dur);
+        scaleImgPenta.setImageResource(R.drawable.c_dur_penta);
         //todo: get scales and songs for that key!
         List<Song> songList = new ArrayList<>();
-        // ID of 'audio' in 'raw' folder.
         String fileName = "fly_me_moon";
         int songId = getRawResIdByName(fileName);
         Song song = new Song(songId, fileName, "fly me to the moon", "dirko");
+        songList.add(song);
+        fileName = "blue_moon";
+        songId = getRawResIdByName(fileName);
+        song = new Song(songId, fileName, "blue moon", "dirko");
         songList.add(song);
 
         GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
