@@ -95,11 +95,70 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    //todo: das hier fuer alle buttons:
-    @OnClick(R.id.button_c)
-    void showScale() {
+    private void openScaleIntent(Key key) {
         Intent scaleIntent = new Intent(this, ScaleActivity.class);
-        scaleIntent.putExtra(ScaleActivity.SCALE_EXTRA, Key.C);
+        scaleIntent.putExtra(ScaleActivity.SCALE_EXTRA, key);
         startActivity(scaleIntent);
     }
+
+    @OnClick(R.id.button_c)
+    void showScaleC() {
+        openScaleIntent(Key.C);
+    }
+
+    @OnClick(R.id.button_d)
+    void showScaleD() {
+        openScaleIntent(Key.D);
+    }
+
+    @OnClick(R.id.button_e)
+    void showScaleE() {
+        openScaleIntent(Key.E);
+    }
+
+    @OnClick(R.id.button_f)
+    void showScaleF() {
+        openScaleIntent(Key.F);
+    }
+
+    @OnClick(R.id.button_g)
+    void showScaleG() {
+        openScaleIntent(Key.G);
+    }
+
+    @OnClick(R.id.button_a)
+    void showScaleA() {
+        openScaleIntent(Key.A);
+    }
+
+    @OnClick(R.id.button_b)
+    void showScaleB() {
+        openScaleIntent(Key.B);
+    }
+
+    @OnClick(R.id.button_fis)
+    void showScaleFis() {
+        openScaleIntent(Key.FIS);
+    }
+
+    @OnClick(R.id.button_bb)
+    void showScaleBb() {
+        openScaleIntent(Key.BB);
+    }
+
+    @OnClick(R.id.button_eb)
+    void showScaleEb() {
+        openScaleIntent(Key.EB);
+    }
+
+    @OnClick(R.id.button_ab)
+    void showScaleAb() {
+        openScaleIntent(Key.AB);
+    }
+
+    @OnClick(R.id.button_db)
+    void showScaleDb() {
+        openScaleIntent(Key.DB);
+    }
+
 }

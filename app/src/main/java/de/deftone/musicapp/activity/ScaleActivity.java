@@ -46,11 +46,11 @@ public class ScaleActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         Key key = (Key) getIntent().getSerializableExtra(SCALE_EXTRA);
-        //todo: get scales and songs for that key!
-        scaleName.setText("C-Dur");
-        scaleNamePenta.setText("C-Dur Pentatonik");
-        scaleImg.setImageResource(R.drawable.c_dur);
-        scaleImgPenta.setImageResource(R.drawable.c_dur_penta);
+        scaleName.setText(key.getKeyData().getKeyName());
+        scaleNamePenta.setText(key.getKeyData().getKeyName() + " Pentatonik");
+        scaleImg.setImageResource(key.getKeyData().getScaleImgResId());
+        scaleImgPenta.setImageResource(key.getKeyData().getPentaImgResId());
+        //todo: get songs for that key!
         List<Song> songList = new ArrayList<>();
         String fileName = "fly_me_moon";
         int songId = getRawResIdByName(fileName);
