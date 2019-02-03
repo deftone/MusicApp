@@ -18,6 +18,8 @@ import butterknife.OnClick;
 import de.deftone.musicapp.R;
 import de.deftone.musicapp.model.Song;
 
+//todo: prev und next button und im player durch die liste wechseln
+// -> dafuer muss der player komplett anders aufgesetzt werden, so wie in musicPlayer app...
 public class PlayerActivity extends AppCompatActivity {
 
     public static final String INTENT_SONG_LIST = "song list";
@@ -44,6 +46,7 @@ public class PlayerActivity extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
     private boolean isPlaying;
     private List<Song> songList;
+    private int songPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,13 +60,12 @@ public class PlayerActivity extends AppCompatActivity {
         scaleImgPenta.setImageResource(R.drawable.c_dur_penta);
 
         songList = new ArrayList<>((ArrayList<Song>) getIntent().getSerializableExtra(INTENT_SONG_LIST));
-        int songPosition = getIntent().getIntExtra(INTENT_SONG_POSITION, 1);
+        songPosition = getIntent().getIntExtra(INTENT_SONG_POSITION, 1);
 
-//        int songId = getIntent().getExtras().getInt(SONG_ID_EXTRA);
-//        String songTitle = getIntent().getExtras().getString(SONG_TITLE_EXTRA);
         this.seekBar.setClickable(false);
 
-        // Create MediaPlayer and use ressource id of song
+        // Create MediaPlayer and use ressource id of song - das geht nur in onCreate!
+        //wenn man also zwischen den songs wechseln moechte, dann muss man das grundsaetzlich anders loesen
         this.mediaPlayer = MediaPlayer.create(this, songList.get(songPosition).getId());
 
         // The duration in milliseconds
@@ -122,11 +124,30 @@ public class PlayerActivity extends AppCompatActivity {
     }
 
 
-    // When user click to "Rewind".
+//    @OnClick(R.id.button_prev)
+//    void onPrevClicked() {
+//        if (songPosition > 0) {
+//            songPosition--;
+//            //play next song:
+//            mediaPlayer.stop();
+//            mediaPlayer.release();
+//            //das hier funktioniert nicht: weil nicht in onCreate
+//            mediaPlayer = MediaPlayer.create(this, songList.get(songPosition).getId());
+//
+//            //update
+//            int duration = this.mediaPlayer.getDuration();
+//            this.seekBar.setMax(duration);
+//            String maxTimeString = this.millisecondsToString(duration);
+//            this.textMaxTime.setText(maxTimeString);
+//            songTitle.setText(songList.get(songPosition).getTitle());
+//
+//            doStart();
+//        }
+//    }
+
     @OnClick(R.id.button_rewind)
     void doRewind() {
         int currentPosition = this.mediaPlayer.getCurrentPosition();
-        int duration = this.mediaPlayer.getDuration();
         // 5 seconds.
         int SUBTRACT_TIME = 5000;
 
@@ -135,7 +156,6 @@ public class PlayerActivity extends AppCompatActivity {
         }
     }
 
-    // When user click to "Fast-Forward".
     @OnClick(R.id.button_fastForward)
     void doFastForward() {
         int currentPosition = this.mediaPlayer.getCurrentPosition();
@@ -147,6 +167,28 @@ public class PlayerActivity extends AppCompatActivity {
             this.mediaPlayer.seekTo(currentPosition + ADD_TIME);
         }
     }
+
+//    @OnClick(R.id.button_next)
+//    void onNextClicked() {
+//        if (songPosition < songList.size() - 1) {
+//            songPosition++;
+//            //play next song:
+//            mediaPlayer.stop();
+//            mediaPlayer.release();
+//            //das hier funktioniert nicht: weil nicht in on create!
+//            onCreate();
+//            mediaPlayer = MediaPlayer.create(this, songList.get(songPosition).getId());
+//
+//            //update
+//            int duration = this.mediaPlayer.getDuration();
+//            this.seekBar.setMax(duration);
+//            String maxTimeString = this.millisecondsToString(duration);
+//            this.textMaxTime.setText(maxTimeString);
+//            songTitle.setText(songList.get(songPosition).getTitle());
+//
+//            doStart();
+//        }
+//    }
 
     @Override
     public void onBackPressed() {
