@@ -14,7 +14,7 @@ import android.view.MenuItem;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.deftone.musicapp.R;
-import de.deftone.musicapp.model.Key;
+import de.deftone.musicapp.model.KeyData;
 
 
 public class MainActivity extends AppCompatActivity
@@ -95,70 +95,70 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    private void openScaleIntent(Key key) {
+    private void openScaleIntent(KeyData keyData) {
         Intent scaleIntent = new Intent(this, ScaleActivity.class);
-        scaleIntent.putExtra(ScaleActivity.SCALE_EXTRA, key);
+        scaleIntent.putExtra(ScaleActivity.INTENT_SCALE_EXTRA, keyData);
         startActivity(scaleIntent);
     }
 
     @OnClick(R.id.button_c)
     void showScaleC() {
-        openScaleIntent(Key.C);
+        openScaleIntent(KeyData.C);
     }
 
     @OnClick(R.id.button_d)
     void showScaleD() {
-        openScaleIntent(Key.D);
+        openScaleIntent(KeyData.D);
     }
 
     @OnClick(R.id.button_e)
     void showScaleE() {
-        openScaleIntent(Key.E);
+        openScaleIntent(KeyData.E);
     }
 
     @OnClick(R.id.button_f)
     void showScaleF() {
-        openScaleIntent(Key.F);
+        openScaleIntent(KeyData.F);
     }
 
     @OnClick(R.id.button_g)
     void showScaleG() {
-        openScaleIntent(Key.G);
+        openScaleIntent(KeyData.G);
     }
 
     @OnClick(R.id.button_a)
     void showScaleA() {
-        openScaleIntent(Key.A);
+        openScaleIntent(KeyData.A);
     }
 
     @OnClick(R.id.button_b)
     void showScaleB() {
-        openScaleIntent(Key.B);
+        openScaleIntent(KeyData.B);
     }
 
     @OnClick(R.id.button_fis)
     void showScaleFis() {
-        openScaleIntent(Key.FIS);
+        openScaleIntent(KeyData.FIS);
     }
 
     @OnClick(R.id.button_bb)
     void showScaleBb() {
-        openScaleIntent(Key.BB);
+        openScaleIntent(KeyData.BB);
     }
 
     @OnClick(R.id.button_eb)
     void showScaleEb() {
-        openScaleIntent(Key.EB);
+        openScaleIntent(KeyData.EB);
     }
 
     @OnClick(R.id.button_ab)
     void showScaleAb() {
-        openScaleIntent(Key.AB);
+        openScaleIntent(KeyData.AB);
     }
 
     @OnClick(R.id.button_db)
     void showScaleDb() {
-        openScaleIntent(Key.DB);
+        openScaleIntent(KeyData.DB);
     }
 
 }

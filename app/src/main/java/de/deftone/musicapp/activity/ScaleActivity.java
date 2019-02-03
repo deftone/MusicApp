@@ -10,22 +10,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.deftone.musicapp.R;
 import de.deftone.musicapp.adapter.SongAdapter;
-import de.deftone.musicapp.model.Key;
+import de.deftone.musicapp.model.KeyData;
 import de.deftone.musicapp.model.Song;
+import de.deftone.musicapp.model.SongData;
 
 import static de.deftone.musicapp.activity.PlayerActivity.INTENT_SONG_LIST;
 import static de.deftone.musicapp.activity.PlayerActivity.INTENT_SONG_POSITION;
 
 public class ScaleActivity extends AppCompatActivity {
 
-    public static final String SCALE_EXTRA = "scale";
+    public static final String INTENT_SCALE_EXTRA = "scale";
 
     private Activity activity = this;
     @BindView(R.id.scale_name)
@@ -38,6 +38,7 @@ public class ScaleActivity extends AppCompatActivity {
     ImageView scaleImgPenta;
     @BindView(R.id.recycler_view_song_list)
     RecyclerView recyclerViewSongs;
+    private KeyData key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,34 +46,17 @@ public class ScaleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scale);
         ButterKnife.bind(this);
 
-        Key key = (Key) getIntent().getSerializableExtra(SCALE_EXTRA);
+        key = (KeyData) getIntent().getSerializableExtra(INTENT_SCALE_EXTRA);
         scaleName.setText(key.getKeyData().getKeyName());
         scaleNamePenta.setText(key.getKeyData().getKeyName() + " Pentatonik");
         scaleImg.setImageResource(key.getKeyData().getScaleImgResId());
         scaleImgPenta.setImageResource(key.getKeyData().getPentaImgResId());
-        //todo: get songs for that key!
-        List<Song> songList = new ArrayList<>();
-        String fileName = "fly_me_moon";
-        int songId = getRawResIdByName(fileName);
-        Song song = new Song(songId, fileName, "fly me to the moon", "dirko");
-        songList.add(song);
-        fileName = "blue_moon";
-        songId = getRawResIdByName(fileName);
-        song = new Song(songId, fileName, "blue moon", "dirko");
-        songList.add(song);
+        List<Song> songList = SongData.getSongsInKey(key);
 
         GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
         recyclerViewSongs.setLayoutManager(layoutManager);
 
         setSongsOnRecyclerView(songList);
-    }
-
-    // Find ID of resource in 'raw' folder.
-    public int getRawResIdByName(String resName) {
-        String pkgName = this.getPackageName();
-        // Return 0 if not found.
-        int resID = this.getResources().getIdentifier(resName, "raw", pkgName);
-        return resID;
     }
 
     private void setSongsOnRecyclerView(final List<Song> songList) {
@@ -86,6 +70,7 @@ public class ScaleActivity extends AppCompatActivity {
                 Intent playIntent = new Intent(activity, PlayerActivity.class);
                 playIntent.putExtra(INTENT_SONG_LIST, (Serializable) songList);
                 playIntent.putExtra(INTENT_SONG_POSITION, position);
+                playIntent.putExtra(INTENT_SCALE_EXTRA, key);
 //                playIntent.putExtra(PlayerActivity.SONG_ID_EXTRA, songList.get(position).getId());
 //                playIntent.putExtra(PlayerActivity.SONG_TITLE_EXTRA, songList.get(position).getTitle());
                 startActivity(playIntent);

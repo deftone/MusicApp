@@ -16,7 +16,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.deftone.musicapp.R;
+import de.deftone.musicapp.model.KeyData;
 import de.deftone.musicapp.model.Song;
+
+import static de.deftone.musicapp.activity.ScaleActivity.INTENT_SCALE_EXTRA;
 
 //todo: prev und next button und im player durch die liste wechseln
 // -> dafuer muss der player komplett anders aufgesetzt werden, so wie in musicPlayer app...
@@ -54,19 +57,20 @@ public class PlayerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_player);
         ButterKnife.bind(this);
 
-        //todo: das hier dynamisch
-        scaleName.setText("C-Dur");
-        scaleImg.setImageResource(R.drawable.c_dur);
-        scaleImgPenta.setImageResource(R.drawable.c_dur_penta);
+        KeyData key = (KeyData) getIntent().getSerializableExtra(INTENT_SCALE_EXTRA);
+        scaleName.setText(key.getKeyData().getKeyName());
+        scaleImg.setImageResource(key.getKeyData().getScaleImgResId());
+        scaleImgPenta.setImageResource(key.getKeyData().getPentaImgResId());
 
         songList = new ArrayList<>((ArrayList<Song>) getIntent().getSerializableExtra(INTENT_SONG_LIST));
         songPosition = getIntent().getIntExtra(INTENT_SONG_POSITION, 1);
+        int songRessourceId = getRawResIdByName(songList.get(songPosition).getFileName());
 
         this.seekBar.setClickable(false);
 
         // Create MediaPlayer and use ressource id of song - das geht nur in onCreate!
         //wenn man also zwischen den songs wechseln moechte, dann muss man das grundsaetzlich anders loesen
-        this.mediaPlayer = MediaPlayer.create(this, songList.get(songPosition).getId());
+        this.mediaPlayer = MediaPlayer.create(this, songRessourceId);
 
         // The duration in milliseconds
         int duration = this.mediaPlayer.getDuration();
@@ -79,6 +83,13 @@ public class PlayerActivity extends AppCompatActivity {
 
     }
 
+    // Find ID of resource in 'raw' folder.
+    public int getRawResIdByName(String resName) {
+        String pkgName = this.getPackageName();
+        // Return 0 if not found.
+        int resID = this.getResources().getIdentifier(resName, "raw", pkgName);
+        return resID;
+    }
 
     // Convert millisecond to string.
     private String millisecondsToString(int milliseconds) {
