@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context=".activity.MainActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -20,6 +21,28 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:paddingTop="80dp"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        android:text="Der Quintenzirkel"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:paddingTop="120dp"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:text="die 12 Tonarten"/>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:paddingTop="120dp"
+        android:src="@drawable/circle_maj_min" />
 
 </android.support.design.widget.CoordinatorLayout>

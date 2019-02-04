@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.ScaleActivity" />
-        <activity android:name=".activity.PlayerActivity"></activity>
+        <activity android:name=".activity.PlayerActivity" />
+        <activity android:name=".activity.CircleActivity"></activity>
     </application>
 
 </manifest>
