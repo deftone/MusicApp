@@ -21,7 +21,8 @@
         </activity>
         <activity android:name=".activity.ScaleActivity" />
         <activity android:name=".activity.PlayerActivity" />
-        <activity android:name=".activity.CircleActivity"></activity>
+        <activity android:name=".activity.CircleActivity" />
+        <activity android:name=".activity.TransposeActivity"></activity>
     </application>
 
 </manifest>

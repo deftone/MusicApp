@@ -74,6 +74,8 @@ public class MainActivity extends AppCompatActivity
                 startActivity(circleIntent);
                 break;
             case R.id.nav_transpose:
+                Intent transposeIntent = new Intent(this, TransposeActivity.class);
+                startActivity(transposeIntent);
                 break;
             case R.id.nav_tuning:
                 break;
