@@ -22,7 +22,8 @@
         <activity android:name=".activity.ScaleActivity" />
         <activity android:name=".activity.PlayerActivity" />
         <activity android:name=".activity.CircleActivity" />
-        <activity android:name=".activity.TransposeActivity"></activity>
+        <activity android:name=".activity.TransposeActivity" />
+        <activity android:name=".activity.TheoryActivity"></activity>
     </application>
 
 </manifest>

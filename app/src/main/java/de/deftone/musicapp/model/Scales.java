@@ -1,5 +1,8 @@
 package de.deftone.musicapp.model;
 
+import com.google.common.collect.BiMap;
+import com.google.common.collect.HashBiMap;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -16,10 +19,8 @@ public class Scales {
             KeyData.AB, KeyData.A,
             KeyData.BB, KeyData.B);
 
-    private static Map<KeyData, KeyData> EB_NOTIERT = new HashMap<>();
-    private static Map<KeyData, KeyData> EB_KLINGEND = new HashMap<>();
-    private static Map<KeyData, KeyData> BB_NOTIERT = new HashMap<>();
-    private static Map<KeyData, KeyData> BB_KLINGEND = new HashMap<>();
+    private static BiMap<KeyData, KeyData> EB_NOTIERT = HashBiMap.create();
+    private static BiMap<KeyData, KeyData> BB_NOTIERT = HashBiMap.create();
 
     static {
         //key is klingender Ton, value is notierter Ton
@@ -36,12 +37,6 @@ public class Scales {
         EB_NOTIERT.put(KeyData.BB, KeyData.G);
         EB_NOTIERT.put(KeyData.B, KeyData.AB);
 
-        //key is notierter Ton, value is klingender Ton
-        //d.h. die erste map umdrehen
-        for (KeyData key : EB_NOTIERT.keySet()) {
-            EB_KLINGEND.put(EB_NOTIERT.get(key), key);
-        }
-
         //key is klingender Ton, value is notierter Ton
         BB_NOTIERT.put(KeyData.C, KeyData.D);
         BB_NOTIERT.put(KeyData.DB, KeyData.EB);
@@ -56,13 +51,6 @@ public class Scales {
         BB_NOTIERT.put(KeyData.BB, KeyData.C);
         BB_NOTIERT.put(KeyData.B, KeyData.DB);
 
-        //key is notierter Ton, value is klingender Ton
-        //d.h. die erste map umdrehen
-        for (KeyData key : BB_NOTIERT.keySet()) {
-            BB_KLINGEND.put(BB_NOTIERT.get(key), key);
-        }
-
-
     }
 
     public static KeyData getNotierterToneForEb(KeyData key) {
@@ -70,7 +58,7 @@ public class Scales {
     }
 
     public static KeyData getKlingenderToneForEb(KeyData key) {
-        return EB_KLINGEND.get(key);
+        return EB_NOTIERT.inverse().get(key);
     }
 
     public static KeyData getNotierterToneForBb(KeyData key) {
@@ -78,18 +66,20 @@ public class Scales {
     }
 
     public static KeyData getKlingenderToneForBb(KeyData key) {
-        return BB_KLINGEND.get(key);
+        return BB_NOTIERT.inverse().get(key);
     }
 
     public static KeyData getSameToneForBb(KeyData key) {
         //Eb greift C -> Eb erklingt
-        KeyData klingenderEbTone = EB_KLINGEND.get(key);
+//        KeyData klingenderEbTone = EB_KLINGEND.get(key);
+        KeyData klingenderEbTone = EB_NOTIERT.inverse().get(key);
         // was ist Eb klingend als notierter Ton fuer Bb?
         return BB_NOTIERT.get(klingenderEbTone);
     }
 
     public static KeyData getSameToneForEb(KeyData key) {
-        KeyData klingenderBbTone = BB_KLINGEND.get(key);
+//        KeyData klingenderBbTone = BB_KLINGEND.get(key);
+        KeyData klingenderBbTone = BB_NOTIERT.inverse().get(key);
         return EB_NOTIERT.get(klingenderBbTone);
     }
 

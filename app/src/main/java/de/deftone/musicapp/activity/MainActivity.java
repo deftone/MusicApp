@@ -82,6 +82,8 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_metronome:
                 break;
             case R.id.nav_theory:
+                Intent theoryActivity = new Intent(this, TheoryActivity.class);
+                startActivity(theoryActivity);
                 break;
             case R.id.nav_quiz:
                 break;
