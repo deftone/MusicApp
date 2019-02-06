@@ -15,9 +15,11 @@ public class Scales {
             KeyData.G,
             KeyData.AB, KeyData.A,
             KeyData.BB, KeyData.B);
-//todo: Bb hinzufuegen
+
     private static Map<KeyData, KeyData> EB_NOTIERT = new HashMap<>();
     private static Map<KeyData, KeyData> EB_KLINGEND = new HashMap<>();
+    private static Map<KeyData, KeyData> BB_NOTIERT = new HashMap<>();
+    private static Map<KeyData, KeyData> BB_KLINGEND = new HashMap<>();
 
     static {
         //key is klingender Ton, value is notierter Ton
@@ -35,18 +37,32 @@ public class Scales {
         EB_NOTIERT.put(KeyData.B, KeyData.AB);
 
         //key is notierter Ton, value is klingender Ton
-        EB_KLINGEND.put(KeyData.A, KeyData.C);
-        EB_KLINGEND.put(KeyData.BB, KeyData.DB);
-        EB_KLINGEND.put(KeyData.B, KeyData.D);
-        EB_KLINGEND.put(KeyData.C, KeyData.EB);
-        EB_KLINGEND.put(KeyData.DB, KeyData.E);
-        EB_KLINGEND.put(KeyData.D, KeyData.F);
-        EB_KLINGEND.put(KeyData.EB, KeyData.FIS);
-        EB_KLINGEND.put(KeyData.E, KeyData.G);
-        EB_KLINGEND.put(KeyData.F, KeyData.AB);
-        EB_KLINGEND.put(KeyData.FIS, KeyData.A);
-        EB_KLINGEND.put(KeyData.G, KeyData.BB);
-        EB_KLINGEND.put(KeyData.AB, KeyData.B);
+        //d.h. die erste map umdrehen
+        for (KeyData key : EB_NOTIERT.keySet()) {
+            EB_KLINGEND.put(EB_NOTIERT.get(key), key);
+        }
+
+        //key is klingender Ton, value is notierter Ton
+        BB_NOTIERT.put(KeyData.C, KeyData.D);
+        BB_NOTIERT.put(KeyData.DB, KeyData.EB);
+        BB_NOTIERT.put(KeyData.D, KeyData.E);
+        BB_NOTIERT.put(KeyData.EB, KeyData.F);
+        BB_NOTIERT.put(KeyData.E, KeyData.FIS);
+        BB_NOTIERT.put(KeyData.F, KeyData.G);
+        BB_NOTIERT.put(KeyData.FIS, KeyData.AB);
+        BB_NOTIERT.put(KeyData.G, KeyData.A);
+        BB_NOTIERT.put(KeyData.AB, KeyData.BB);
+        BB_NOTIERT.put(KeyData.A, KeyData.B);
+        BB_NOTIERT.put(KeyData.BB, KeyData.C);
+        BB_NOTIERT.put(KeyData.B, KeyData.DB);
+
+        //key is notierter Ton, value is klingender Ton
+        //d.h. die erste map umdrehen
+        for (KeyData key : BB_NOTIERT.keySet()) {
+            BB_KLINGEND.put(BB_NOTIERT.get(key), key);
+        }
+
+
     }
 
     public static KeyData getNotierterToneForEb(KeyData key) {
@@ -55,6 +71,26 @@ public class Scales {
 
     public static KeyData getKlingenderToneForEb(KeyData key) {
         return EB_KLINGEND.get(key);
+    }
+
+    public static KeyData getNotierterToneForBb(KeyData key) {
+        return BB_NOTIERT.get(key);
+    }
+
+    public static KeyData getKlingenderToneForBb(KeyData key) {
+        return BB_KLINGEND.get(key);
+    }
+
+    public static KeyData getSameToneForBb(KeyData key) {
+        //Eb greift C -> Eb erklingt
+        KeyData klingenderEbTone = EB_KLINGEND.get(key);
+        // was ist Eb klingend als notierter Ton fuer Bb?
+        return BB_NOTIERT.get(klingenderEbTone);
+    }
+
+    public static KeyData getSameToneForEb(KeyData key) {
+        KeyData klingenderBbTone = BB_KLINGEND.get(key);
+        return EB_NOTIERT.get(klingenderBbTone);
     }
 
     public static List<KeyData> getScale() {
