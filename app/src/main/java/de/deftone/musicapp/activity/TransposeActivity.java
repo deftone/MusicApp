@@ -13,7 +13,6 @@ import de.deftone.musicapp.R;
 import de.deftone.musicapp.model.KeyData;
 import de.deftone.musicapp.model.Scales;
 
-//todo: Bb hinzufuegen
 public class TransposeActivity extends AppCompatActivity {
 
     @BindView(R.id.spinner_klingend_eb)

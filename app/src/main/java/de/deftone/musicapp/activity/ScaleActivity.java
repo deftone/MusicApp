@@ -17,6 +17,7 @@ import butterknife.ButterKnife;
 import de.deftone.musicapp.R;
 import de.deftone.musicapp.adapter.SongAdapter;
 import de.deftone.musicapp.model.KeyData;
+import de.deftone.musicapp.model.Scales;
 import de.deftone.musicapp.model.Song;
 import de.deftone.musicapp.model.SongData;
 
@@ -26,8 +27,15 @@ import static de.deftone.musicapp.activity.PlayerActivity.INTENT_SONG_POSITION;
 public class ScaleActivity extends AppCompatActivity {
 
     public static final String INTENT_SCALE_EXTRA = "scale";
+    private static KeyData instrument = KeyData.BB;
+
+    public static void setInstrument(KeyData keyData) {
+        instrument = keyData;
+    }
 
     private Activity activity = this;
+    private KeyData key;
+
     @BindView(R.id.scale_name)
     TextView scaleName;
     @BindView(R.id.scale_name_penta)
@@ -38,7 +46,6 @@ public class ScaleActivity extends AppCompatActivity {
     ImageView scaleImgPenta;
     @BindView(R.id.recycler_view_song_list)
     RecyclerView recyclerViewSongs;
-    private KeyData key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +58,17 @@ public class ScaleActivity extends AppCompatActivity {
         scaleNamePenta.setText(key.getKeyData().getKeyName() + " Pentatonik");
         scaleImg.setImageResource(key.getKeyData().getScaleImgResId());
         scaleImgPenta.setImageResource(key.getKeyData().getPentaImgResId());
+        switch (instrument) {
+            case BB:
+                key = Scales.getKlingenderToneForBb(key);
+                break;
+            case EB:
+                key = Scales.getKlingenderToneForEb(key);
+                break;
+            default:
+                //do nothing;
+                break;
+        }
         List<Song> songList = SongData.getSongsInKey(key);
 
         GridLayoutManager layoutManager = new GridLayoutManager(this, 1);

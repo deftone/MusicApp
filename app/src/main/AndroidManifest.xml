@@ -23,7 +23,8 @@
         <activity android:name=".activity.PlayerActivity" />
         <activity android:name=".activity.CircleActivity" />
         <activity android:name=".activity.TransposeActivity" />
-        <activity android:name=".activity.TheoryActivity"></activity>
+        <activity android:name=".activity.TheoryActivity" />
+        <activity android:name=".activity.SettingsActivity"></activity>
     </application>
 
 </manifest>
