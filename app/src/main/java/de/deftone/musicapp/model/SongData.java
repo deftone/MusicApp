@@ -33,25 +33,38 @@ public class SongData {
         ALL_SONGS.add(new Song(KeyData.AB, "ab_major_aebersold", "simple jazz song", "Aebersold"));
         ALL_SONGS.add(new Song(KeyData.FIS, "gb_major_aebersold", "simple jazz song", "Aebersold"));
 
+        ALL_SONGS.add(new Song(KeyData.C, "c_dirko", "sax sound song", "Dirko"));
+        ALL_SONGS.add(new Song(KeyData.D, "d_dirko", "sax sound song", "Dirko"));
+        ALL_SONGS.add(new Song(KeyData.E, "e_dirko", "sax sound song", "Dirko"));
+        ALL_SONGS.add(new Song(KeyData.F, "f_dirko", "sax sound song", "Dirko"));
+        ALL_SONGS.add(new Song(KeyData.G, "g_dirko", "sax sound song", "Dirko"));
+        ALL_SONGS.add(new Song(KeyData.A, "a_dirko", "sax sound song", "Dirko"));
+        ALL_SONGS.add(new Song(KeyData.B, "b_dirko", "sax sound song", "Dirko"));
+        ALL_SONGS.add(new Song(KeyData.BB, "bb_dirko", "sax sound song", "Dirko"));
+        ALL_SONGS.add(new Song(KeyData.EB, "eb_dirko", "sax sound song", "Dirko"));
+        ALL_SONGS.add(new Song(KeyData.DB, "db_dirko", "sax sound song", "Dirko"));
+        ALL_SONGS.add(new Song(KeyData.AB, "ab_dirko", "sax sound song", "Dirko"));
+        ALL_SONGS.add(new Song(KeyData.FIS, "gb_dirko", "sax sound song", "Dirko"));
+
         ALL_SONGS.add(new Song(KeyData.C, "c_moon_river", "moon river", "Dirko"));
 
         // d moll = f dur vorzeichen
-        ALL_SONGS.add(new Song(KeyData.F, "d_min_summertime", "summertime", "Dirko"));
+        ALL_SONGS.add(new Song(KeyData.F, "d_min_summertime", "summertime (Dm)", "Dirko"));
         ALL_SONGS.add(new Song(KeyData.F, "f_sentimental", "sentimental jorney", "Dirko"));
         ALL_SONGS.add(new Song(KeyData.F, "f_tequila", "tequila", "Dirko"));
 
         // c moll = Eb dur vorzeichen
-        ALL_SONGS.add(new Song(KeyData.EB, "c_min_wade_wader", "wade in the water", "Dirko"));
+        ALL_SONGS.add(new Song(KeyData.EB, "c_min_wade_wader", "wade in the water (Ebm)", "Dirko"));
         // g moll = Bb dur vorzeichen
-        ALL_SONGS.add(new Song(KeyData.BB, "g_min_wayfaring_stranger", "wayfaring stranger", "Dirko"));
-        ALL_SONGS.add(new Song(KeyData.BB, "g_min_autumn_leaves", "autumn leaves", "Dirko"));
-        ALL_SONGS.add(new Song(KeyData.BB, "g_min_petite_fleur", "petite fleur", "Dirko"));
+        ALL_SONGS.add(new Song(KeyData.BB, "g_min_wayfaring_stranger", "wayfaring stranger (Gm)", "Dirko"));
+        ALL_SONGS.add(new Song(KeyData.BB, "g_min_autumn_leaves", "autumn leaves (Gm)", "Dirko"));
+        ALL_SONGS.add(new Song(KeyData.BB, "g_min_petite_fleur", "petite fleur (Gm)", "Dirko"));
         ALL_SONGS.add(new Song(KeyData.BB, "bb_perdigo", "perdigo", "Dirko"));
 
         ALL_SONGS.add(new Song(KeyData.G, "g_how_high_moon", "how high the moon", "Dirko"));
 
         // f moll == Ab dur vorzeichen
-        ALL_SONGS.add(new Song(KeyData.AB, "f_min_caravan", "caravan", "Dirko"));
+        ALL_SONGS.add(new Song(KeyData.AB, "f_min_caravan", "caravan (Fm)", "Dirko"));
         ALL_SONGS.add(new Song(KeyData.AB, "ab_mood_indigo", "mood indigo", "Dirko"));
         ALL_SONGS.add(new Song(KeyData.AB, "ab_in_the_mood", "in the mood", "Dirko"));
 
