@@ -29,8 +29,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //todo: add instrument to title und auch immer aktualisieren, wenn gewechselt wurde!
-        toolbar.setTitle(R.string.app_name + "(" + InstrumentFragment.getInstrument() + ")");
+        getSupportActionBar().setTitle(getString(R.string.app_name) + " (" + InstrumentFragment.getInstrument() + ")");
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

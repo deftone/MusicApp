@@ -3,7 +3,7 @@ package de.deftone.musicapp.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,22 +22,22 @@ import de.deftone.musicapp.model.KeyData;
 
 public class InstrumentFragment extends Fragment {
 
-    //todo: title anpassen, wenn instrument gewechselt wurde
-
     @BindView(R.id.instrument_spinner)
     Spinner instrumentSpinner;
 
-    public static final String INTENT_SCALE_EXTRA = "scale";
     private static KeyData instrument = KeyData.BB;
 
     public InstrumentFragment() {
         // Required empty public constructor
     }
 
-    public static void setInstrument(KeyData keyData) {
+    public static boolean setInstrument(KeyData keyData) {
         if (instrument == KeyData.C || instrument == KeyData.BB
-                || instrument == KeyData.EB)
+                || instrument == KeyData.EB) {
             instrument = keyData;
+            return true;
+        }
+        return false;
     }
 
     public static KeyData getInstrument() {
@@ -76,7 +76,10 @@ public class InstrumentFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 KeyData selectedInstrument = (KeyData) instrumentSpinner.getItemAtPosition(i);
-                setInstrument(selectedInstrument);
+                boolean changed = setInstrument(selectedInstrument);
+                if (changed) { //todo: nullpointer
+                    ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getString(R.string.app_name) + " (" + InstrumentFragment.getInstrument() + ")");
+                }
             }
 
             @Override
