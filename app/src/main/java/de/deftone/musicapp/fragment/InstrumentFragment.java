@@ -17,7 +17,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.deftone.musicapp.R;
-import de.deftone.musicapp.activity.ScaleActivity;
 import de.deftone.musicapp.model.KeyData;
 
 
@@ -28,8 +27,21 @@ public class InstrumentFragment extends Fragment {
     @BindView(R.id.instrument_spinner)
     Spinner instrumentSpinner;
 
+    public static final String INTENT_SCALE_EXTRA = "scale";
+    private static KeyData instrument = KeyData.BB;
+
     public InstrumentFragment() {
         // Required empty public constructor
+    }
+
+    public static void setInstrument(KeyData keyData) {
+        if (instrument == KeyData.C || instrument == KeyData.BB
+                || instrument == KeyData.EB)
+            instrument = keyData;
+    }
+
+    public static KeyData getInstrument() {
+        return instrument;
     }
 
     @Override
@@ -55,7 +67,7 @@ public class InstrumentFragment extends Fragment {
                     R.layout.spinner_item_layout, data);
             dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             instrumentSpinner.setAdapter(dataAdapter);
-            instrumentSpinner.setSelection(data.indexOf(ScaleActivity.getInstrument()));
+            instrumentSpinner.setSelection(data.indexOf(getInstrument()));
         }
     }
 
@@ -64,7 +76,7 @@ public class InstrumentFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 KeyData selectedInstrument = (KeyData) instrumentSpinner.getItemAtPosition(i);
-                ScaleActivity.setInstrument(selectedInstrument);
+                setInstrument(selectedInstrument);
             }
 
             @Override

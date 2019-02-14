@@ -1,11 +1,13 @@
-package de.deftone.musicapp.activity;
+package de.deftone.musicapp.fragment;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,6 +17,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.deftone.musicapp.R;
+import de.deftone.musicapp.activity.PlayerActivity;
 import de.deftone.musicapp.adapter.SongAdapter;
 import de.deftone.musicapp.model.KeyData;
 import de.deftone.musicapp.model.Scales;
@@ -24,22 +27,10 @@ import de.deftone.musicapp.model.SongData;
 import static de.deftone.musicapp.activity.PlayerActivity.INTENT_SONG_LIST;
 import static de.deftone.musicapp.activity.PlayerActivity.INTENT_SONG_POSITION;
 
-public class ScaleActivity extends AppCompatActivity {
+
+public class ScaleFragment extends Fragment {
 
     public static final String INTENT_SCALE_EXTRA = "scale";
-    private static KeyData instrument = KeyData.BB;
-
-    public static void setInstrument(KeyData keyData) {
-        if (instrument == KeyData.C || instrument == KeyData.BB
-                || instrument == KeyData.EB)
-            instrument = keyData;
-    }
-
-    public static KeyData getInstrument() {
-        return instrument;
-    }
-
-    private Activity activity = this;
     private KeyData key;
 
     @BindView(R.id.scale_name)
@@ -53,18 +44,24 @@ public class ScaleActivity extends AppCompatActivity {
     @BindView(R.id.recycler_view_song_list)
     RecyclerView recyclerViewSongs;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scale);
-        ButterKnife.bind(this);
+    public ScaleFragment() {
+        // Required empty public constructor
+    }
 
-        key = (KeyData) getIntent().getSerializableExtra(INTENT_SCALE_EXTRA);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_scale, container, false);
+
+        ButterKnife.bind(this, view);
+
+        key = (KeyData) getArguments().getSerializable(INTENT_SCALE_EXTRA);
         scaleName.setText(key.getKeyData().getKeyName());
         scaleNamePenta.setText(key.getKeyData().getKeyName() + " Pentatonik");
         scaleImg.setImageResource(key.getKeyData().getScaleImgResId());
         scaleImgPenta.setImageResource(key.getKeyData().getPentaImgResId());
-        switch (instrument) {
+        switch (InstrumentFragment.getInstrument()) {
             case BB:
                 key = Scales.getKlingenderToneForBb(key);
                 break;
@@ -77,10 +74,12 @@ public class ScaleActivity extends AppCompatActivity {
         }
         List<Song> songList = SongData.getSongsInKey(key);
 
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
+        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 1);
         recyclerViewSongs.setLayoutManager(layoutManager);
 
         setSongsOnRecyclerView(songList);
+
+        return view;
     }
 
     private void setSongsOnRecyclerView(final List<Song> songList) {
@@ -91,7 +90,7 @@ public class ScaleActivity extends AppCompatActivity {
             @Override
             public void onClick(int position) {
                 //open play activity
-                Intent playIntent = new Intent(activity, PlayerActivity.class);
+                Intent playIntent = new Intent(getActivity(), PlayerActivity.class);
                 playIntent.putExtra(INTENT_SONG_LIST, (Serializable) songList);
                 playIntent.putExtra(INTENT_SONG_POSITION, position);
                 playIntent.putExtra(INTENT_SCALE_EXTRA, key);
@@ -101,4 +100,5 @@ public class ScaleActivity extends AppCompatActivity {
             }
         });
     }
+
 }

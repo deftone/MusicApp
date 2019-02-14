@@ -19,7 +19,8 @@ import de.deftone.musicapp.R;
 import de.deftone.musicapp.model.KeyData;
 import de.deftone.musicapp.model.Song;
 
-import static de.deftone.musicapp.activity.ScaleActivity.INTENT_SCALE_EXTRA;
+import static de.deftone.musicapp.fragment.ScaleFragment.INTENT_SCALE_EXTRA;
+
 
 //todo: prev und next button und im player durch die liste wechseln
 // -> dafuer muss der player komplett anders aufgesetzt werden, so wie in musicPlayer app...

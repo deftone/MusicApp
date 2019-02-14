@@ -1,6 +1,5 @@
 package de.deftone.musicapp.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -14,6 +13,7 @@ import android.view.MenuItem;
 
 import butterknife.ButterKnife;
 import de.deftone.musicapp.R;
+import de.deftone.musicapp.fragment.CircleFragment;
 import de.deftone.musicapp.fragment.InstrumentFragment;
 import de.deftone.musicapp.fragment.TransposeFragment;
 
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //todo: add instrument to title und auch immer aktualisieren, wenn gewechselt wurde!
-        toolbar.setTitle(R.string.app_name + "(" + ScaleActivity.getInstrument() + ")");
+        toolbar.setTitle(R.string.app_name + "(" + InstrumentFragment.getInstrument() + ")");
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -69,8 +69,7 @@ public class MainActivity extends AppCompatActivity
                 fragment = new InstrumentFragment();
                 break;
             case R.id.nav_circle:
-                Intent circleIntent = new Intent(this, CircleActivity.class);
-                startActivity(circleIntent);
+                fragment = new CircleFragment();
                 break;
             case R.id.nav_transpose:
                 fragment = new TransposeFragment();
@@ -80,8 +79,6 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_metronome:
                 break;
             case R.id.nav_theory:
-                Intent theoryActivity = new Intent(this, TheoryActivity.class);
-                startActivity(theoryActivity);
                 break;
             case R.id.nav_quiz:
                 break;
