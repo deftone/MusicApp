@@ -18,7 +18,7 @@
 
                     <corners android:radius="4dp" />
 
-                    <padding android:right="20dp"  />
+                    <padding android:right="3dp" android:left="3dp"  />
                 </shape>
             </item>
 
@@ -26,7 +26,7 @@
 
                 <bitmap
                     android:gravity="end"
-                    android:src="@drawable/spinner_arrow" />
+                    android:src="@drawable/transparent" />
             </item>
         </layer-list>
     </item>

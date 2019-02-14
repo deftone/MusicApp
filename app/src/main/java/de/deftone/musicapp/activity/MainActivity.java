@@ -65,14 +65,15 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment = null;
 
         switch (id) {
+            case R.id.nav_home:
+                fragment = new InstrumentFragment();
+                break;
             case R.id.nav_circle:
                 Intent circleIntent = new Intent(this, CircleActivity.class);
                 startActivity(circleIntent);
                 break;
             case R.id.nav_transpose:
                 fragment = new TransposeFragment();
-                Intent transposeIntent = new Intent(this, TransposeActivity.class);
-                startActivity(transposeIntent);
                 break;
             case R.id.nav_tuning:
                 break;
@@ -96,6 +97,5 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
 }

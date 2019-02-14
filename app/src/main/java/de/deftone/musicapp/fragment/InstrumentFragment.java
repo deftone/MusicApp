@@ -24,7 +24,6 @@ import de.deftone.musicapp.model.KeyData;
 public class InstrumentFragment extends Fragment {
 
     //todo: title anpassen, wenn instrument gewechselt wurde
-    //todo: (evtl) spinner layout mit rand und weissem drop down button
 
     @BindView(R.id.instrument_spinner)
     Spinner instrumentSpinner;
