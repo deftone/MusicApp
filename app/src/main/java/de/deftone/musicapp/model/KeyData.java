@@ -48,31 +48,31 @@ public enum KeyData {
     BB {
         @Override
         public Key getKeyData() {
-            return new Key("A#/Bb", "Bb-Dur", R.drawable.bb_dur, R.drawable.bb_dur_penta);
+            return new Key("Bb", "Bb-Dur", R.drawable.bb_dur, R.drawable.bb_dur_penta);
         }
     },
     EB {
         @Override
         public Key getKeyData() {
-            return new Key("D#/Eb", "Eb-Dur", R.drawable.eb_dur, R.drawable.eb_dur_penta);
+            return new Key("Eb", "Eb-Dur", R.drawable.eb_dur, R.drawable.eb_dur_penta);
         }
     },
     AB {
         @Override
         public Key getKeyData() {
-            return new Key("G#/Ab", "Ab-Dur", R.drawable.ab_dur, R.drawable.ab_dur_penta);
+            return new Key("Ab", "Ab-Dur", R.drawable.ab_dur, R.drawable.ab_dur_penta);
         }
     },
     DB {
         @Override
         public Key getKeyData() {
-            return new Key("C#/Db", "Db-Dur", R.drawable.db_dur, R.drawable.db_dur_penta);
+            return new Key("Db", "Db-Dur", R.drawable.db_dur, R.drawable.db_dur_penta);
         }
     },
     FIS {
         @Override
         public Key getKeyData() {
-            return new Key("F#/Gb", "F#-Dur", R.drawable.fis_dur, R.drawable.fis_dur_penta);
+            return new Key("F#", "F#-Dur", R.drawable.fis_dur, R.drawable.fis_dur_penta);
         }
     };
 

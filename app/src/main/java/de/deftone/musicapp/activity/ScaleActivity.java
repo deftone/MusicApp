@@ -30,7 +30,13 @@ public class ScaleActivity extends AppCompatActivity {
     private static KeyData instrument = KeyData.BB;
 
     public static void setInstrument(KeyData keyData) {
-        instrument = keyData;
+        if (instrument == KeyData.C || instrument == KeyData.BB
+                || instrument == KeyData.EB)
+            instrument = keyData;
+    }
+
+    public static KeyData getInstrument() {
+        return instrument;
     }
 
     private Activity activity = this;
