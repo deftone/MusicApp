@@ -10,241 +10,250 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="vertical"
         android:paddingTop="?attr/actionBarSize">
 
-        <!--********  Eb ***************-->
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorLight"
-            android:orientation="vertical"
-            android:paddingBottom="10dp">
+            android:layout_gravity="center"
+            android:layout_marginTop="17dp"
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="20dp"
-                android:paddingTop="20dp"
-                android:text="Eb-Instrumente"
-                android:textColor="@color/white"
-                android:textSize="25dp" />
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="20dp"
-                android:paddingTop="10dp"
-                android:text="Eb-Instrumente klingen eine Terz höher als notiert (Eb statt C). D.h. du musst 3 Halbtöne tiefer greifen um den klingenden Ton zu erzeugen. "
-                android:textColor="@color/white"
-                android:textSize="17dp" />
-
+            <!--********  Eb ***************-->
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:background="@color/colorLight"
+                android:orientation="vertical"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="20dp"
+                    android:paddingTop="20dp"
+                    android:text="Eb-Instrumente"
+                    android:textColor="@color/white"
+                    android:textSize="25dp" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="20dp"
+                    android:paddingTop="10dp"
+                    android:text="Eb-Instrumente klingen eine Terz höher als notiert (Eb statt C). D.h. du musst 3 Halbtöne tiefer greifen um den klingenden Ton zu erzeugen. "
+                    android:textColor="@color/white"
+                    android:textSize="17dp" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingEnd="50dp"
-                    android:paddingStart="20dp"
-                    android:paddingTop="5dp">
+                    android:orientation="horizontal">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="klingender Ton"
-                        android:textColor="@color/white"
-                        android:textSize="20dp" />
+                        android:orientation="vertical"
+                        android:paddingEnd="50dp"
+                        android:paddingStart="20dp"
+                        android:paddingTop="5dp">
 
-                    <Spinner
-                        android:id="@+id/spinner_klingend_eb"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="klingender Ton"
+                            android:textColor="@color/white"
+                            android:textSize="20dp" />
+
+                        <Spinner
+                            android:id="@+id/spinner_klingend_eb"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:orientation="vertical"
+                        android:paddingStart="20dp"
+                        android:paddingTop="5dp">
 
-                </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="notierter Ton"
+                            android:textColor="@color/white"
+                            android:textSize="20dp" />
 
+                        <Spinner
+                            android:id="@+id/spinner_notiert_eb"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingStart="20dp"
-                    android:paddingTop="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="notierter Ton"
-                        android:textColor="@color/white"
-                        android:textSize="20dp" />
-
-                    <Spinner
-                        android:id="@+id/spinner_notiert_eb"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
 
-        <!--********  Bb ***************-->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:orientation="vertical"
-            android:paddingBottom="10dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="20dp"
-                android:paddingTop="20dp"
-                android:text="Bb-Instrumente"
-                android:textColor="@color/white"
-                android:textSize="25dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="20dp"
-                android:text="Bb-Instrumente klingen eine große Sekunde tiefer als notiert (Bb statt C). D.h. du musst 2 Halbtöne höher greifen um den klingenden Ton zu erzeugen."
-                android:textColor="@color/white"
-                android:textSize="17dp" />
-
+            <!--********  Bb ***************-->
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:background="@color/colorPrimary"
+                android:orientation="vertical"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="20dp"
+                    android:paddingTop="20dp"
+                    android:text="Bb-Instrumente"
+                    android:textColor="@color/white"
+                    android:textSize="25dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="20dp"
+                    android:text="Bb-Instrumente klingen eine große Sekunde tiefer als notiert (Bb statt C). D.h. du musst 2 Halbtöne höher greifen um den klingenden Ton zu erzeugen."
+                    android:textColor="@color/white"
+                    android:textSize="17dp" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingEnd="50dp"
-                    android:paddingStart="20dp"
-                    android:paddingTop="5dp">
+                    android:orientation="horizontal">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="klingender Ton"
-                        android:textColor="@color/white"
-                        android:textSize="20dp" />
+                        android:orientation="vertical"
+                        android:paddingEnd="50dp"
+                        android:paddingStart="20dp"
+                        android:paddingTop="5dp">
 
-                    <Spinner
-                        android:id="@+id/spinner_klingend_bb"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="klingender Ton"
+                            android:textColor="@color/white"
+                            android:textSize="20dp" />
+
+                        <Spinner
+                            android:id="@+id/spinner_klingend_bb"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:orientation="vertical"
+                        android:paddingStart="20dp"
+                        android:paddingTop="5dp">
 
-                </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="notierter Ton"
+                            android:textColor="@color/white"
+                            android:textSize="20dp" />
 
+                        <Spinner
+                            android:id="@+id/spinner_notiert_bb"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingStart="20dp"
-                    android:paddingTop="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="notierter Ton"
-                        android:textColor="@color/white"
-                        android:textSize="20dp" />
-
-                    <Spinner
-                        android:id="@+id/spinner_notiert_bb"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
 
-        <!--********  Bb vs Eb ***************-->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
-            android:orientation="vertical"
-            android:paddingBottom="10dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="20dp"
-                android:paddingTop="20dp"
-                android:text="Bb vs Eb-Instrumente"
-                android:textColor="@color/white"
-                android:textSize="25dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="20dp"
-                android:text="Die gleichen klingenden Töne erreicht man, wenn die Instrumente folgendes spielen:"
-                android:textColor="@color/white"
-                android:textSize="17dp" />
-
+            <!--********  Bb vs Eb ***************-->
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:background="@color/colorPrimaryDark"
+                android:orientation="vertical"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="20dp"
+                    android:paddingTop="20dp"
+                    android:text="Bb vs Eb-Instrumente"
+                    android:textColor="@color/white"
+                    android:textSize="25dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="20dp"
+                    android:text="Die gleichen klingenden Töne erreicht man, wenn die Instrumente folgendes spielen:"
+                    android:textColor="@color/white"
+                    android:textSize="17dp" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingEnd="95dp"
-                    android:paddingStart="20dp"
-                    android:paddingTop="5dp">
+                    android:orientation="horizontal">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="notiert Eb"
-                        android:textColor="@color/white"
-                        android:textSize="20dp" />
+                        android:orientation="vertical"
+                        android:paddingEnd="95dp"
+                        android:paddingStart="20dp"
+                        android:paddingTop="5dp">
 
-                    <Spinner
-                        android:id="@+id/spinner_eb"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="notiert Eb"
+                            android:textColor="@color/white"
+                            android:textSize="20dp" />
+
+                        <Spinner
+                            android:id="@+id/spinner_eb"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:orientation="vertical"
+                        android:paddingStart="20dp"
+                        android:paddingTop="5dp">
 
-                </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="notiert Bb"
+                            android:textColor="@color/white"
+                            android:textSize="20dp" />
 
+                        <Spinner
+                            android:id="@+id/spinner_bb"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingStart="20dp"
-                    android:paddingTop="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="notiert Bb"
-                        android:textColor="@color/white"
-                        android:textSize="20dp" />
-
-                    <Spinner
-                        android:id="@+id/spinner_bb"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

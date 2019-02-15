@@ -34,7 +34,8 @@ public class CircleFragment extends Fragment {
         Fragment scaleFragment = new ScaleFragment();
         scaleFragment.setArguments(bundle);
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.content_frame, scaleFragment);
+        ft.add(R.id.content_frame, scaleFragment);
+        ft.addToBackStack(null);
         ft.commit();
     }
 
