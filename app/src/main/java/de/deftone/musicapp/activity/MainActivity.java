@@ -16,6 +16,7 @@ import de.deftone.musicapp.R;
 import de.deftone.musicapp.fragment.CircleFragment;
 import de.deftone.musicapp.fragment.InstrumentFragment;
 import de.deftone.musicapp.fragment.TransposeFragment;
+import de.deftone.musicapp.fragment.WarmUpFragment;
 
 
 public class MainActivity extends AppCompatActivity
@@ -77,9 +78,10 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.nav_metronome:
                 break;
-            case R.id.nav_theory:
-                break;
             case R.id.nav_quiz:
+                break;
+            case R.id.warm_up:
+                fragment = new WarmUpFragment();
                 break;
         }
 

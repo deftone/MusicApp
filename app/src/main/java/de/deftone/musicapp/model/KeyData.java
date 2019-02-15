@@ -74,6 +74,13 @@ public enum KeyData {
         public Key getKeyData() {
             return new Key("F#", "F#-Dur", R.drawable.fis_dur, R.drawable.fis_dur_penta);
         }
+    },
+//    DEFAULT is not used in circle of fifth
+    DEFAULT{
+        @Override
+        public Key getKeyData() {
+            return null;
+        }
     };
 
     public abstract Key getKeyData();

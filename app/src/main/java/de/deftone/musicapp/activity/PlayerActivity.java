@@ -4,6 +4,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -16,6 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.deftone.musicapp.R;
+import de.deftone.musicapp.fragment.InstrumentFragment;
 import de.deftone.musicapp.model.KeyData;
 import de.deftone.musicapp.model.Song;
 
@@ -59,9 +61,26 @@ public class PlayerActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         KeyData key = (KeyData) getIntent().getSerializableExtra(INTENT_SCALE_EXTRA);
-        scaleName.setText(key.getKeyData().getKeyName());
-        scaleImg.setImageResource(key.getKeyData().getScaleImgResId());
-        scaleImgPenta.setImageResource(key.getKeyData().getPentaImgResId());
+        if (key == KeyData.DEFAULT) {
+            switch (InstrumentFragment.getInstrument()) {
+                case BB:
+                    scaleImg.setImageResource(R.drawable.warm_up_bb);
+                    break;
+                case EB:
+                    scaleImg.setImageResource(R.drawable.warm_up_eb);
+                    break;
+                default:
+                    scaleImg.setImageResource(R.drawable.warm_up_c);
+
+                    break;
+            }
+            scaleName.setText("Warm up (lange Töne)");
+            scaleImgPenta.setVisibility(View.GONE);
+        } else {
+            scaleName.setText(key.getKeyData().getKeyName());
+            scaleImg.setImageResource(key.getKeyData().getScaleImgResId());
+            scaleImgPenta.setImageResource(key.getKeyData().getPentaImgResId());
+        }
 
         songList = new ArrayList<>((ArrayList<Song>) getIntent().getSerializableExtra(INTENT_SONG_LIST));
         songPosition = getIntent().getIntExtra(INTENT_SONG_POSITION, 1);

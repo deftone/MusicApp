@@ -66,6 +66,5 @@ public class SongData {
         ALL_SONGS.add(new Song(KeyData.AB, "f_min_caravan", "caravan (moll)", "Dirko"));
         ALL_SONGS.add(new Song(KeyData.AB, "ab_mood_indigo", "mood indigo", "Dirko"));
         ALL_SONGS.add(new Song(KeyData.AB, "ab_in_the_mood", "in the mood", "Dirko"));
-
-    }
+      }
 }
