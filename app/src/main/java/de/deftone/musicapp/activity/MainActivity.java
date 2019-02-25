@@ -10,6 +10,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import butterknife.ButterKnife;
 import de.deftone.musicapp.R;
@@ -46,6 +48,20 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.content_frame, fragment);
         fragmentTransaction.commit();
+//todo butterknife
+        View headerview = navigationView.getHeaderView(0);
+        LinearLayout header = (LinearLayout) headerview.findViewById(R.id.header);
+        header.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InstrumentFragment fragment = new InstrumentFragment();
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.content_frame, fragment);
+                ft.commit();
+                DrawerLayout drawer = findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
+            }
+        });
     }
 
     @Override
@@ -65,9 +81,6 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment = null;
 
         switch (id) {
-            case R.id.nav_home:
-                fragment = new InstrumentFragment();
-                break;
             case R.id.nav_circle:
                 fragment = new CircleFragment();
                 break;
@@ -95,5 +108,4 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 }

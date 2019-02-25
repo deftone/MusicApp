@@ -5,10 +5,6 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
-            android:icon="@android:drawable/btn_star"
-            android:title="Home" />
-        <item
             android:id="@+id/nav_circle"
             android:icon="@android:drawable/btn_star"
             android:title="Tonarten/Songs" />
