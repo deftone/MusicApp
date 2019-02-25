@@ -37,6 +37,7 @@ public class ScaleFragment extends Fragment {
 
     public static final String INTENT_SCALE_EXTRA = "scale";
     private KeyData key;
+    private KeyData klingenderKey;
 
     @BindView(R.id.scale_name)
     TextView scaleName;
@@ -70,16 +71,16 @@ public class ScaleFragment extends Fragment {
         scaleImgPenta.setImageResource(key.getKeyData().getPentaImgResId());
         switch (InstrumentFragment.getInstrument()) {
             case BB:
-                key = Scales.getKlingenderToneForBb(key);
+                klingenderKey = Scales.getKlingenderToneForBb(key);
                 break;
             case EB:
-                key = Scales.getKlingenderToneForEb(key);
+                klingenderKey = Scales.getKlingenderToneForEb(key);
                 break;
             default:
-                //do nothing;
+                klingenderKey = key;
                 break;
         }
-        List<Song> songList = SongData.getSongsInKey(key);
+        List<Song> songList = SongData.getSongsInKey(klingenderKey);
 
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 1);
         recyclerViewSongs.setLayoutManager(layoutManager);
