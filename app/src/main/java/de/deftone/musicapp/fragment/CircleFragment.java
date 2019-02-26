@@ -9,6 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -16,6 +20,7 @@ import butterknife.OnClick;
 import de.deftone.musicapp.R;
 import de.deftone.musicapp.model.KeyData;
 
+//todo: wenn scale fragment aufpoppt darf man dieses fragment nicht mehr sehen!
 public class CircleFragment extends Fragment {
 
     @BindView(R.id.button_c)
@@ -42,6 +47,12 @@ public class CircleFragment extends Fragment {
     Button buttonBb;
     @BindView(R.id.button_f)
     Button buttonF;
+    @BindView(R.id.circle_top_text)
+    TextView topText;
+    @BindView(R.id.circle_bottom_text)
+    TextView bottomText;
+    @BindView(R.id.circle_image)
+    ImageView circleImage;
 
     public CircleFragment() {
         // Required empty public constructor
@@ -53,14 +64,14 @@ public class CircleFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_circle, container, false);
         ButterKnife.bind(this, view);
-        initButtons();
+        initLayout();
+//        updateVisibility(View.VISIBLE);
         return view;
     }
 
-    private void initButtons() {
+    private void initLayout() {
         DisplayMetrics metrics = new DisplayMetrics();
-
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        Objects.requireNonNull(getActivity()).getWindowManager().getDefaultDisplay().getMetrics(metrics);
         int usableHeight = metrics.heightPixels;
         int usableWidth = metrics.widthPixels;
 
@@ -68,19 +79,22 @@ public class CircleFragment extends Fragment {
 //        getActivity().getWindowManager().getDefaultDisplay().getRealMetrics(metrics);
 //        int realHeight = metrics.heightPixels; //width is the same!
 
-        int actionbarHeight = ((AppCompatActivity) getActivity()).getSupportActionBar().getHeight();
+        int actionbarHeight = Objects.requireNonNull(((AppCompatActivity) getActivity()).getSupportActionBar()).getHeight();
 
         //size of button in px (although it is defined in dp)
         int buttonWidth = (int) getResources().getDimension(R.dimen.button_width);
 
-        //center at: (and also move button horizontally)
+        //center coordinates (and also include button dimensions)
         int centerX = usableWidth / 2 - buttonWidth / 2;
-        int centerY = usableHeight / 2 - actionbarHeight - buttonWidth / 5;
+        int centerY = usableHeight / 2 - actionbarHeight - buttonWidth / 5;  //hier ist noch ein bug? muesste /2 und nicht /5 sein... aber dann simmt es nicht
+
+        //radius of circle is half of the width
+        int radius = usableWidth / 2;
 
         float sin30 = (float) Math.sin(30. / 180 * Math.PI);
         float cos30 = (float) Math.cos(30. / 180 * Math.PI);
 
-        float distanceFromCenter = .85f * centerX;
+        float distanceFromCenter = .75f * radius;
 
         //the 4 buttons "on the cross" (i.e 0, 3, 6 and 9 o'clock)
         buttonC.setX(centerX);
@@ -120,6 +134,12 @@ public class CircleFragment extends Fragment {
 
         buttonAb.setX(centerX - cos30 * distanceFromCenter);
         buttonAb.setY(centerY + sin30 * distanceFromCenter);
+
+        //set text views between top/bottom border and circle
+        int textHeight = (int) getResources().getDimension(R.dimen.large_text);
+        int midWayCircleBorder = ((usableHeight - actionbarHeight) / 2 - radius) / 2;
+        topText.setY(midWayCircleBorder - textHeight);
+        bottomText.setY((usableHeight - actionbarHeight) - midWayCircleBorder - textHeight);
     }
 
     private void openScaleFragment(KeyData keyData) {
@@ -127,10 +147,18 @@ public class CircleFragment extends Fragment {
         bundle.putSerializable(ScaleFragment.INTENT_SCALE_EXTRA, keyData);
         Fragment scaleFragment = new ScaleFragment();
         scaleFragment.setArguments(bundle);
-        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        FragmentTransaction ft = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
         ft.add(R.id.content_frame, scaleFragment);
         ft.addToBackStack(null);
         ft.commit();
+        //don't show texts and circle in next fragment todo! muessen aber bei popBackStackImmediate wieder alle sehen!
+//        updateVisibility(View.GONE);
+    }
+
+    private void updateVisibility(int visibility) {
+        bottomText.setVisibility(visibility);
+        topText.setVisibility(visibility);
+        circleImage.setVisibility(visibility);
     }
 
     @OnClick(R.id.button_c)

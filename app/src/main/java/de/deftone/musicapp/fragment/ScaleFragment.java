@@ -32,7 +32,8 @@ import de.deftone.musicapp.model.SongData;
 import static de.deftone.musicapp.activity.PlayerActivity.INTENT_SONG_LIST;
 import static de.deftone.musicapp.activity.PlayerActivity.INTENT_SONG_POSITION;
 
-
+//todo: onBackPressed auch ueberschreiben so wie onClick im back arrow, sonst verschwindet pfeil nicht, wenn man den android soft key nutzt
+//todo: nicht die ganze songlist uebergeben, sondern wirklich nur ein lied!
 public class ScaleFragment extends Fragment {
 
     public static final String INTENT_SCALE_EXTRA = "scale";
