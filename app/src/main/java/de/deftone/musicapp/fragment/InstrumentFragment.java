@@ -19,7 +19,7 @@ import butterknife.ButterKnife;
 import de.deftone.musicapp.R;
 import de.deftone.musicapp.model.KeyData;
 
-
+//todo: mit MS reden, wie man das am besten styled
 public class InstrumentFragment extends Fragment {
 
     @BindView(R.id.instrument_spinner)
