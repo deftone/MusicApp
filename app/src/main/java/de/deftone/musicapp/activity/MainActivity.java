@@ -1,6 +1,7 @@
 package de.deftone.musicapp.activity;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -13,7 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import butterknife.ButterKnife;
+import java.util.Objects;
+
 import de.deftone.musicapp.R;
 import de.deftone.musicapp.fragment.CircleFragment;
 import de.deftone.musicapp.fragment.InstrumentFragment;
@@ -27,12 +29,12 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(getString(R.string.app_name) + " (" + InstrumentFragment.getInstrument() + ")");
+        Objects.requireNonNull(getSupportActionBar()).setTitle(
+                getString(R.string.app_name) + " (" + InstrumentFragment.getInstrument() + ")");
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -48,19 +50,14 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.content_frame, fragment);
         fragmentTransaction.commit();
-//todo butterknife
         View headerview = navigationView.getHeaderView(0);
-        LinearLayout header = (LinearLayout) headerview.findViewById(R.id.header);
-        header.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                InstrumentFragment fragment = new InstrumentFragment();
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.content_frame, fragment);
-                ft.commit();
-                DrawerLayout drawer = findViewById(R.id.drawer_layout);
-                drawer.closeDrawer(GravityCompat.START);
-            }
+        LinearLayout header = headerview.findViewById(R.id.header);
+        header.setOnClickListener(v -> {
+            InstrumentFragment fragment1 = new InstrumentFragment();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_frame, fragment1);
+            ft.commit();
+            drawer.closeDrawer(GravityCompat.START);
         });
     }
 
@@ -76,7 +73,7 @@ public class MainActivity extends AppCompatActivity
 
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         Fragment fragment = null;
 
@@ -87,12 +84,13 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_transpose:
                 fragment = new TransposeFragment();
                 break;
-            case R.id.nav_tuning:
-                break;
-            case R.id.nav_metronome:
-                break;
-            case R.id.nav_quiz:
-                break;
+                //todo: fuer spaeter, wenn die ersten features komplett fertig sind
+//            case R.id.nav_tuning:
+//                break;
+//            case R.id.nav_metronome:
+//                break;
+//            case R.id.nav_quiz:
+//                break;
             case R.id.warm_up:
                 fragment = new WarmUpFragment();
                 break;
