@@ -21,6 +21,7 @@ import de.deftone.musicapp.R;
 import de.deftone.musicapp.model.KeyData;
 
 //todo: wenn scale fragment aufpoppt darf man dieses fragment nicht mehr sehen!
+//todo: das bild auch selber machen, nicht aus dem netz klauen...
 public class CircleFragment extends Fragment {
 
     @BindView(R.id.button_c)
