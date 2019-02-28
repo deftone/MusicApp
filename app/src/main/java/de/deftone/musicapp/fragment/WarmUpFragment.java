@@ -23,8 +23,6 @@ import de.deftone.musicapp.adapter.SongAdapter;
 import de.deftone.musicapp.model.KeyData;
 import de.deftone.musicapp.model.Song;
 
-import static de.deftone.musicapp.activity.PlayerActivity.INTENT_SONG_LIST;
-import static de.deftone.musicapp.activity.PlayerActivity.INTENT_SONG_POSITION;
 import static de.deftone.musicapp.fragment.ScaleFragment.INTENT_SCALE_EXTRA;
 
 
@@ -87,11 +85,8 @@ public class WarmUpFragment extends Fragment {
             public void onClick(int position) {
                 //open play activity
                 Intent playIntent = new Intent(getActivity(), PlayerActivity.class);
-                playIntent.putExtra(INTENT_SONG_LIST, (Serializable) songList);
-                playIntent.putExtra(INTENT_SONG_POSITION, position);
                 playIntent.putExtra(INTENT_SCALE_EXTRA, KeyData.DEFAULT);
-//                playIntent.putExtra(PlayerActivity.SONG_ID_EXTRA, songList.get(position).getId());
-//                playIntent.putExtra(PlayerActivity.SONG_TITLE_EXTRA, songList.get(position).getTitle());
+                playIntent.putExtra(PlayerActivity.SONG_FILE_NAME_EXTRA, songList.get(position).getFileName());
                 startActivity(playIntent);
             }
         });

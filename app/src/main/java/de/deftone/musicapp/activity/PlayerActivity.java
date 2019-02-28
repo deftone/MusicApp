@@ -10,26 +10,20 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.deftone.musicapp.R;
 import de.deftone.musicapp.fragment.InstrumentFragment;
 import de.deftone.musicapp.model.KeyData;
-import de.deftone.musicapp.model.Song;
 
 import static de.deftone.musicapp.fragment.ScaleFragment.INTENT_SCALE_EXTRA;
 
 
-//todo: prev und next button und im player durch die liste wechseln
-// -> dafuer muss der player komplett anders aufgesetzt werden, so wie in musicPlayer app...
 public class PlayerActivity extends AppCompatActivity {
 
-    public static final String INTENT_SONG_LIST = "song list";
-    public static final String INTENT_SONG_POSITION = "song position in list";
+    public static final String SONG_FILE_NAME_EXTRA = "song file name";
+    public static final String SONG_TITLE_EXTRA = "song title";
 
     @BindView(R.id.textView_maxTime)
     TextView textMaxTime;
@@ -51,8 +45,6 @@ public class PlayerActivity extends AppCompatActivity {
     private Handler threadHandler = new Handler();
     private MediaPlayer mediaPlayer;
     private boolean isPlaying;
-    private List<Song> songList;
-    private int songPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,9 +74,7 @@ public class PlayerActivity extends AppCompatActivity {
             scaleImgPenta.setImageResource(key.getKeyData().getPentaImgResId());
         }
 
-        songList = new ArrayList<>((ArrayList<Song>) getIntent().getSerializableExtra(INTENT_SONG_LIST));
-        songPosition = getIntent().getIntExtra(INTENT_SONG_POSITION, 1);
-        int songRessourceId = getRawResIdByName(songList.get(songPosition).getFileName());
+        int songRessourceId = getRawResIdByName(getIntent().getStringExtra(SONG_FILE_NAME_EXTRA));
 
         this.seekBar.setClickable(false);
 
@@ -99,8 +89,7 @@ public class PlayerActivity extends AppCompatActivity {
         this.textMaxTime.setText(maxTimeString);
 
         //title
-        songTitle.setText(songList.get(songPosition).getTitle());
-
+        songTitle.setText(getIntent().getStringExtra(SONG_TITLE_EXTRA));
     }
 
     // Find ID of resource in 'raw' folder.
@@ -155,27 +144,6 @@ public class PlayerActivity extends AppCompatActivity {
     }
 
 
-//    @OnClick(R.id.button_prev)
-//    void onPrevClicked() {
-//        if (songPosition > 0) {
-//            songPosition--;
-//            //play next song:
-//            mediaPlayer.stop();
-//            mediaPlayer.release();
-//            //das hier funktioniert nicht: weil nicht in onCreate
-//            mediaPlayer = MediaPlayer.create(this, songList.get(songPosition).getId());
-//
-//            //update
-//            int duration = this.mediaPlayer.getDuration();
-//            this.seekBar.setMax(duration);
-//            String maxTimeString = this.millisecondsToString(duration);
-//            this.textMaxTime.setText(maxTimeString);
-//            songTitle.setText(songList.get(songPosition).getTitle());
-//
-//            doStart();
-//        }
-//    }
-
     @OnClick(R.id.button_rewind)
     void doRewind() {
         int currentPosition = this.mediaPlayer.getCurrentPosition();
@@ -198,28 +166,6 @@ public class PlayerActivity extends AppCompatActivity {
             this.mediaPlayer.seekTo(currentPosition + ADD_TIME);
         }
     }
-
-//    @OnClick(R.id.button_next)
-//    void onNextClicked() {
-//        if (songPosition < songList.size() - 1) {
-//            songPosition++;
-//            //play next song:
-//            mediaPlayer.stop();
-//            mediaPlayer.release();
-//            //das hier funktioniert nicht: weil nicht in on create!
-//            onCreate();
-//            mediaPlayer = MediaPlayer.create(this, songList.get(songPosition).getId());
-//
-//            //update
-//            int duration = this.mediaPlayer.getDuration();
-//            this.seekBar.setMax(duration);
-//            String maxTimeString = this.millisecondsToString(duration);
-//            this.textMaxTime.setText(maxTimeString);
-//            songTitle.setText(songList.get(songPosition).getTitle());
-//
-//            doStart();
-//        }
-//    }
 
     @Override
     public void onBackPressed() {

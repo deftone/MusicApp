@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.Serializable;
 import java.util.List;
 
 import butterknife.BindView;
@@ -29,11 +28,7 @@ import de.deftone.musicapp.model.Scales;
 import de.deftone.musicapp.model.Song;
 import de.deftone.musicapp.model.SongData;
 
-import static de.deftone.musicapp.activity.PlayerActivity.INTENT_SONG_LIST;
-import static de.deftone.musicapp.activity.PlayerActivity.INTENT_SONG_POSITION;
-
 //todo: onBackPressed auch ueberschreiben so wie onClick im back arrow, sonst verschwindet pfeil nicht, wenn man den android soft key nutzt
-//todo: nicht die ganze songlist uebergeben, sondern wirklich nur ein lied!
 public class ScaleFragment extends Fragment {
 
     public static final String INTENT_SCALE_EXTRA = "scale";
@@ -126,11 +121,9 @@ public class ScaleFragment extends Fragment {
             public void onClick(int position) {
                 //open play activity
                 Intent playIntent = new Intent(getActivity(), PlayerActivity.class);
-                playIntent.putExtra(INTENT_SONG_LIST, (Serializable) songList);
-                playIntent.putExtra(INTENT_SONG_POSITION, position);
                 playIntent.putExtra(INTENT_SCALE_EXTRA, key);
-//                playIntent.putExtra(PlayerActivity.SONG_ID_EXTRA, songList.get(position).getId());
-//                playIntent.putExtra(PlayerActivity.SONG_TITLE_EXTRA, songList.get(position).getTitle());
+                playIntent.putExtra(PlayerActivity.SONG_FILE_NAME_EXTRA, songList.get(position).getFileName());
+                playIntent.putExtra(PlayerActivity.SONG_TITLE_EXTRA, songList.get(position).getTitle());
                 startActivity(playIntent);
             }
         });
