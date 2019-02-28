@@ -3,13 +3,8 @@ package de.deftone.musicapp.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,12 +23,10 @@ import de.deftone.musicapp.model.Scales;
 import de.deftone.musicapp.model.Song;
 import de.deftone.musicapp.model.SongData;
 
-//todo: onBackPressed auch ueberschreiben so wie onClick im back arrow, sonst verschwindet pfeil nicht, wenn man den android soft key nutzt
 public class ScaleFragment extends Fragment {
 
     public static final String INTENT_SCALE_EXTRA = "scale";
     private KeyData key;
-    private KeyData klingenderKey;
 
     @BindView(R.id.scale_name)
     TextView scaleName;
@@ -58,13 +51,12 @@ public class ScaleFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
-        showBackArrow();
-
         key = (KeyData) getArguments().getSerializable(INTENT_SCALE_EXTRA);
         scaleName.setText(key.getKeyData().getKeyName());
         scaleNamePenta.setText(key.getKeyData().getKeyName() + " Pentatonik");
         scaleImg.setImageResource(key.getKeyData().getScaleImgResId());
         scaleImgPenta.setImageResource(key.getKeyData().getPentaImgResId());
+        KeyData klingenderKey;
         switch (InstrumentFragment.getInstrument()) {
             case BB:
                 klingenderKey = Scales.getKlingenderToneForBb(key);
@@ -86,32 +78,6 @@ public class ScaleFragment extends Fragment {
         return view;
     }
 
-    private void showBackArrow() {
-        //show up arrow
-        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-        DrawerLayout drawer = getActivity().findViewById(R.id.drawer_layout);
-        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(getActivity(),
-                drawer, toolbar,
-                R.string.navigation_drawer_open,
-                R.string.navigation_drawer_close);
-        //show up arrow (setting it first false and then true is "best practise"...)
-        actionBar.setDisplayHomeAsUpEnabled(false);
-        toggle.setDrawerIndicatorEnabled(false);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        //and implement up arrow functionality: set correct tab of viewpager
-        toggle.setToolbarNavigationClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //show up arrow (setting it first false and then true is "best practise"...)
-                actionBar.setDisplayHomeAsUpEnabled(false);
-                toggle.setDrawerIndicatorEnabled(true);
-                getFragmentManager().popBackStackImmediate();
-            }
-        });
-
-    }
-
     private void setSongsOnRecyclerView(final List<Song> songList) {
         // specify an adapter
         SongAdapter adapter = new SongAdapter(songList);
@@ -128,5 +94,4 @@ public class ScaleFragment extends Fragment {
             }
         });
     }
-
 }
