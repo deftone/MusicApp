@@ -54,6 +54,8 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.content_frame, fragment);
         fragmentTransaction.commit();
+
+        //add on click listener for home icon in drawer
         View headerview = navigationView.getHeaderView(0);
         LinearLayout header = headerview.findViewById(R.id.header);
         header.setOnClickListener(v -> {
@@ -131,7 +133,6 @@ public class MainActivity extends AppCompatActivity
             ft.commit();
         }
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
