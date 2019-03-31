@@ -23,7 +23,7 @@ import de.deftone.musicapp.fragment.InstrumentFragment;
 import de.deftone.musicapp.fragment.TransposeFragment;
 import de.deftone.musicapp.fragment.WarmUpFragment;
 
-
+/** dieser zweig hat noch den navigation drawer, falls ich es mal wieder dadrauf zurueck aendere **/
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
