@@ -16,9 +16,6 @@ import de.deftone.musicapp.R;
 import de.deftone.musicapp.model.KeyData;
 import de.deftone.musicapp.model.Scales;
 
-//todo: evtl funktioniert der on click auf den hamburger nicht?!
-// bei allen anderen fragments aber schon, macht keinen sinn :(
-// rausziehen funktioniert aber!
 public class TransposeFragment extends Fragment {
 
     @BindView(R.id.spinner_klingend_eb)
