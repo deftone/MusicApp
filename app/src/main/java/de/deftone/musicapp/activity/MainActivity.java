@@ -17,7 +17,7 @@ import de.deftone.musicapp.fragment.InstrumentFragment;
 import de.deftone.musicapp.fragment.TransposeFragment;
 import de.deftone.musicapp.fragment.WarmUpFragment;
 
-
+//https://android.jlelse.eu/ultimate-guide-to-bottom-navigation-on-android-75e4efb8105f
 public class MainActivity extends AppCompatActivity {
 
     @Override

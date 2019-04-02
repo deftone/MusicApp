@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <!--<item name="android:actionBarTabTextStyle">@style/tabtextcolor</item>-->
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -22,4 +23,18 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@layout/gradient_spinner</item>
     </style>
+
+    <!--<style name="StyledIndicators" parent="@android:style/Theme.Light.NoTitleBar">-->
+        <!--<item name="vpiTabPageIndicatorStyle">@style/CustomTabPageIndicator</item>-->
+    <!--</style>-->
+
+    <!--//https://mycodeandlife.wordpress.com/2012/09/28/customising-the-viewpager/-->
+    <!--<style name="CustomTabPageIndicator" parent="@android:style/Theme.Light.NoTitleBar">-->
+        <!--<item name="android:background">@color/white</item>-->
+        <!--<item name="android:textColor">#FF555555</item>-->
+    <!--</style>-->
+
+    <!--<style name="tabtextcolor" parent="@android:style/Widget.Holo.Light.ActionBar.TabText">-->
+        <!--<item name="android:textColor">@android:color/white</item>-->
+    <!--</style>-->
 </resources>

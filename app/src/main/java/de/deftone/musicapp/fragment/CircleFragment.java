@@ -48,10 +48,10 @@ public class CircleFragment extends Fragment {
     Button buttonBb;
     @BindView(R.id.button_f)
     Button buttonF;
-    @BindView(R.id.circle_top_text)
-    TextView topText;
-    @BindView(R.id.circle_bottom_text)
-    TextView bottomText;
+//    @BindView(R.id.circle_top_text)
+//    TextView topText;
+//    @BindView(R.id.circle_bottom_text)
+//    TextView bottomText;
     @BindView(R.id.circle_image)
     ImageView circleImage;
 
@@ -139,8 +139,8 @@ public class CircleFragment extends Fragment {
         //set text views between top/bottom border and circle
         int textHeight = (int) getResources().getDimension(R.dimen.large_text);
         int midWayCircleBorder = ((usableHeight - actionbarHeight) / 2 - radius) / 2;
-        topText.setY(midWayCircleBorder - textHeight);
-        bottomText.setY((usableHeight - actionbarHeight) - midWayCircleBorder - textHeight);
+//        topText.setY(midWayCircleBorder);
+//        bottomText.setY((usableHeight - actionbarHeight) - 2.5f * midWayCircleBorder - textHeight);
     }
 
     private void openScaleFragment(KeyData keyData) {
@@ -157,8 +157,8 @@ public class CircleFragment extends Fragment {
     }
 
     private void updateVisibility(int visibility) {
-        bottomText.setVisibility(visibility);
-        topText.setVisibility(visibility);
+//        bottomText.setVisibility(visibility);
+//        topText.setVisibility(visibility);
         circleImage.setVisibility(visibility);
     }
 
