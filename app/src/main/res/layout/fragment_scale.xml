@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     android:orientation="vertical"
     tools:context=".activity.MainActivity">
 
@@ -13,10 +14,10 @@
         android:paddingTop="?attr/actionBarSize">
 
         <LinearLayout
-            android:layout_marginTop="10dp"
-            android:background="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorPrimary"
             android:orientation="vertical">
 
 

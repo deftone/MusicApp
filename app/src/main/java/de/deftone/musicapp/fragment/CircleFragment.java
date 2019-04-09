@@ -20,8 +20,6 @@ import butterknife.OnClick;
 import de.deftone.musicapp.R;
 import de.deftone.musicapp.model.KeyData;
 
-//todo: wenn scale fragment aufpoppt darf man dieses fragment nicht mehr sehen!
-//todo: das bild auch selber machen, nicht aus dem netz klauen...
 public class CircleFragment extends Fragment {
 
     @BindView(R.id.button_c)
@@ -50,8 +48,8 @@ public class CircleFragment extends Fragment {
     Button buttonF;
 //    @BindView(R.id.circle_top_text)
 //    TextView topText;
-//    @BindView(R.id.circle_bottom_text)
-//    TextView bottomText;
+    @BindView(R.id.circle_bottom_text)
+    TextView bottomText;
     @BindView(R.id.circle_image)
     ImageView circleImage;
 
@@ -140,6 +138,7 @@ public class CircleFragment extends Fragment {
         int textHeight = (int) getResources().getDimension(R.dimen.large_text);
         int midWayCircleBorder = ((usableHeight - actionbarHeight) / 2 - radius) / 2;
 //        topText.setY(midWayCircleBorder);
+        bottomText.setY(midWayCircleBorder);
 //        bottomText.setY((usableHeight - actionbarHeight) - 2.5f * midWayCircleBorder - textHeight);
     }
 
@@ -152,15 +151,9 @@ public class CircleFragment extends Fragment {
         ft.add(R.id.content_frame, scaleFragment);
         ft.addToBackStack(null);
         ft.commit();
-        //don't show texts and circle in next fragment todo! muessen aber bei popBackStackImmediate wieder alle sehen!
-//        updateVisibility(View.GONE);
     }
 
-    private void updateVisibility(int visibility) {
-//        bottomText.setVisibility(visibility);
-//        topText.setVisibility(visibility);
-        circleImage.setVisibility(visibility);
-    }
+
 
     @OnClick(R.id.button_c)
     void showScaleC() {

@@ -1,14 +1,18 @@
 package de.deftone.musicapp.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import de.deftone.musicapp.R;
@@ -16,8 +20,8 @@ import de.deftone.musicapp.fragment.CircleFragment;
 import de.deftone.musicapp.fragment.InstrumentFragment;
 import de.deftone.musicapp.fragment.TransposeFragment;
 import de.deftone.musicapp.fragment.WarmUpFragment;
+//https://code.tutsplus.com/tutorials/how-to-code-a-bottom-navigation-bar-for-an-android-app--cms-30305
 
-//https://android.jlelse.eu/ultimate-guide-to-bottom-navigation-on-android-75e4efb8105f
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -30,49 +34,78 @@ public class MainActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setTitle(
                 getString(R.string.app_name) + " (" + InstrumentFragment.getInstrument() + ")");
 
-        setUpViewPager();
+        initBottomTabs();
+        initFirstFragment();
 
     }
 
+    //todo: warum funktioniert das antippen beim erten mal nicht???
+    private void initFirstFragment() {
+        Fragment fragment = new CircleFragment();
 
-    private void setUpViewPager() {
-        //Attach the SectionsPagerAdapter to the Viewpager
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        ViewPager viewPager = findViewById(R.id.viewpager);
-        viewPager.setAdapter(sectionsPagerAdapter);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
-        //Attach the ViewPager to the TabLayout
-        TabLayout tabLayout = findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
+        transaction.replace(R.id.content_frame, fragment);
+        transaction.addToBackStack(null);
 
-        tabLayout.getTabAt(0).setText("Zirkel");
-        tabLayout.getTabAt(1).setText("Warm up");
-        tabLayout.getTabAt(2).setText("Transpo");
+        // Commit the transaction
+        transaction.commit();
     }
 
-    //viewpager
-    private class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        public SectionsPagerAdapter(FragmentManager fragmentManager) {
-            super(fragmentManager);
+    private void initBottomTabs() {
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.navigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment fragment;
+                switch (item.getItemId()) {
+                    case R.id.navigation_circle:
+                    default:
+                        fragment = new CircleFragment();
+                        break;
+                    case R.id.navigation_warm_up:
+                        fragment = new WarmUpFragment();
+                        break;
+                    case R.id.navigation_transpose:
+                        fragment = new TransposeFragment();
+                        break;
+                }
+
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+                transaction.replace(R.id.content_frame, fragment);
+                transaction.addToBackStack(null);
+
+                transaction.commit();
+                return true;
+            }
+        });
+
+    }
+
+    //bottom tabs und viewpager
+    ///https://stackoverflow.com/questions/47714606/viewpager-using-bottom-navigation-view-is-not-swiping-the-fragments
+
+    public class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
         }
-
         @Override
         public Fragment getItem(int position) {
-            switch (position) {
-                case 0:
-                    return new CircleFragment();
-                case 1:
-                    return new WarmUpFragment();
-                case 2:
-                    return new TransposeFragment();
-            }
-            return null;
+            return mFragmentList.get(position);
         }
 
         @Override
         public int getCount() {
-            return 3;
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment) {
+            mFragmentList.add(fragment);
         }
     }
 }

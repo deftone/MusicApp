@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_circle"
+        android:icon="@drawable/icon_play"
+        android:title="Circle"/>
+
+    <item
+        android:id="@+id/navigation_warm_up"
+        android:icon="@drawable/icon_pause"
+        android:title="Warm up"/>
+
+    <item
+        android:id="@+id/navigation_transpose"
+        android:icon="@drawable/icon_next"
+        android:title="Transpose"/>
+
+</menu>

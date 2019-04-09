@@ -24,16 +24,16 @@
             <!--android:textColor="@color/white"-->
             <!--android:textSize="@dimen/large_text" />-->
 
-        <!--<TextView-->
-            <!--android:id="@+id/circle_bottom_text"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:paddingBottom="20dp"-->
-            <!--android:paddingHorizontal="20dp"-->
-            <!--android:text="Übe Intonation, Fingerübungen oder Improvisieren in allen 12 Tonarten. Tippe auf die gewünschte Tonart."-->
-            <!--android:textAlignment="center"-->
-            <!--android:textColor="@color/white"-->
-            <!--android:textSize="15dp" />-->
+        <TextView
+            android:id="@+id/circle_bottom_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
+            android:paddingHorizontal="20dp"
+            android:text="Übe Intonation, Fingerübungen oder Improvisieren in allen 12 Tonarten. Tippe auf die gewünschte Tonart."
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="15dp" />
 
 
         <ImageView
